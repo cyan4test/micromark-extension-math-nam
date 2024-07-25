@@ -25,6 +25,8 @@ import {markdownLineEnding} from 'micromark-util-character'
 import {codes} from 'micromark-util-symbol/codes.js'
 import {types} from 'micromark-util-symbol/types.js'
 
+console.log('#!! micromark-extension-math math-text.js'); //#!!
+
 /**
  * @param {Options | null | undefined} [options]
  * @returns {Construct}
@@ -36,6 +38,8 @@ export function mathText(options) {
   if (single === null || single === undefined) {
     single = true
   }
+  
+  console.log(`#!! mathText single:`,single);
 
   return {
     tokenize: tokenizeMathText,
@@ -72,6 +76,7 @@ export function mathText(options) {
     function start(code) {
       assert(code === codes.dollarSign, 'expected `$`')
       assert(previous.call(self, self.previous), 'expected correct previous')
+      console.log(`#!! start effects.enter('MathTextSequence') code: ${code}`);
       effects.enter('mathText')
       effects.enter('mathTextSequence')
       return sequenceOpen(code)
@@ -99,7 +104,7 @@ export function mathText(options) {
       if (sizeOpen < 2 && !single) {
         return nok(code)
       }
-
+      console.log(`#!! sequenceOpen effects.exit('MathTextSequence') code: ${code}`);
       effects.exit('mathTextSequence')
       return between(code)
     }
@@ -120,6 +125,7 @@ export function mathText(options) {
       }
 
       if (code === codes.dollarSign) {
+        console.log(`#!! between effects.enter('MathTextSequence') code: ${code}`);
         token = effects.enter('mathTextSequence')
         size = 0
         return sequenceClose(code)
@@ -191,6 +197,7 @@ export function mathText(options) {
 
       // Done!
       if (size === sizeOpen) {
+        console.log(`#!! sequenceClose effects.exit('MathTextSequence') code: ${code}`);
         effects.exit('mathTextSequence')
         effects.exit('mathText')
         return ok(code)

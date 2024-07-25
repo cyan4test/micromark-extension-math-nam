@@ -1,5 +1,5 @@
 {
-  "name": "micromark-extension-math-2",
+  "name": "micromark-extension-math",
   "version": "2.1.2",
   "description": "micromark extension to support math (`$C_L$`)",
   "license": "MIT",

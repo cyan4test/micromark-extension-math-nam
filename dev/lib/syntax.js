@@ -19,6 +19,7 @@ import {mathText as mathTextBackslash} from './math-text-backslash.js'
  *   enable math syntax.
  */
 export function math(options) {
+  console.log("#!! node_modules/micromark-extension-math/dev/lib/syntax.js options:", options)
   return {
     flow: {
       [codes.dollarSign]: mathFlow,

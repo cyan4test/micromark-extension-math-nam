@@ -20,6 +20,8 @@ import {markdownLineEnding} from 'micromark-util-character'
 import {codes} from 'micromark-util-symbol/codes.js'
 import {types} from 'micromark-util-symbol/types.js'
 
+console.log('#!! math-text-backslash.js'); //#!!
+
 /**
  * @param {Options} [options]
  * @returns {Construct}

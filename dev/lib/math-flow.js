@@ -12,6 +12,8 @@ import {codes} from 'micromark-util-symbol/codes.js'
 import {constants} from 'micromark-util-symbol/constants.js'
 import {types} from 'micromark-util-symbol/types.js'
 
+console.log('#!! micromark-extension-math math-flow.js'); //#!!
+
 /** @type {Construct} */
 export const mathFlow = {
   tokenize: tokenizeMathFenced,
@@ -37,6 +39,8 @@ function tokenizeMathFenced(effects, ok, nok) {
       : 0
   let sizeOpen = 0
 
+  console.log(`#!! math-flow.js tokenizeMathFenced`,effects);
+
   return start
 
   /**
@@ -53,6 +57,7 @@ function tokenizeMathFenced(effects, ok, nok) {
    */
   function start(code) {
     assert(code === codes.dollarSign, 'expected `$`')
+    console.log(`#!! math-flow.js start(${code}) effects.enter('mathFlow')`);
     effects.enter('mathFlow')
     effects.enter('mathFlowFence')
     effects.enter('mathFlowFenceSequence')
