@@ -1,3 +1,5 @@
+rename back to original name
+
 # micromark-extension-math
 
 [![Build][build-badge]][build]
