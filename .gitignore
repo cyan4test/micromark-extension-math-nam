@@ -1,8 +1,8 @@
 .DS_Store
-*.d.ts
+#*.d.ts
 *.log
 coverage/
 node_modules/
 /lib/
-/index.js
+#/index.js
 yarn.lock
